@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const imageRoute = require("./routes/image");
 
@@ -29,6 +30,7 @@ connectDB();
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors());
 
 app.get("/", (req, res) => {
   return res.status(200).send("Api is working");
