@@ -25,7 +25,8 @@ router.post("/", async (req, res) => {
   try {
     const savedQuery = await newQuery.save();
     const { id, createdAt, updatedAt, __v, ...other } = savedQuery._doc; // any container will do, it's just for temp storage
-    return res.status(200).json(other);
+    // return res.status(200).json(other);
+    return res.status(200).json(results);
   } catch (err) {
     return res.status(500).json(err);
   }
