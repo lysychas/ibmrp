@@ -17,16 +17,15 @@ const showResults = async (imgUrl) => {
 // process image and save query - C
 router.post("/", async (req, res) => {
   const { imgUrl } = req.body;
-  const results = await showResults(imgUrl);
-  const newQuery = new Query({
-    imgUrl: imgUrl,
-    foundObjects: results,
-  });
   try {
+    const results = await showResults(imgUrl);
+    const newQuery = new Query({
+      imgUrl: imgUrl,
+      foundObjects: results,
+    });
     const savedQuery = await newQuery.save();
-    const { id, createdAt, updatedAt, __v, ...other } = savedQuery._doc; // any container will do, it's just for temp storage
-    // return res.status(200).json(other);
-    return res.status(200).json(results);
+    const { createdAt, updatedAt, __v, ...other } = savedQuery._doc; // any container will do, it's just for temp storage
+    return res.status(200).json(other);
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -46,7 +45,7 @@ router.get("/:id", async (req, res) => {
 // get last 5 queries - R
 router.get("/", async (req, res) => {
   try {
-    const query = await Query.find().sort({ $natural: -1 }).limit(5);
+    const query = await Query.find().sort({ _id: -1 }).limit(5);
     return res.status(200).json(query);
   } catch (err) {
     return res.status(500).json(err);
