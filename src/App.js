@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const result = await axios("https://morning-fjord-83611.herokuapp.com//api/image");
+      const result = await axios("https://morning-fjord-83611.herokuapp.com/api/image");
       setQueryList(result.data);
     })();
   }, [imageUrl]);
