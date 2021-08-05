@@ -14,7 +14,9 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const result = await axios("https://morning-fjord-83611.herokuapp.com/api/image");
+      const result = await axios(
+        "https://morning-fjord-83611.herokuapp.com/api/image"
+      );
       setQueryList(result.data);
     })();
   }, [imageUrl]);
@@ -25,9 +27,12 @@ function App() {
 
   const onButtonSubmit = async () => {
     try {
-      const response = await axios.post("https://morning-fjord-83611.herokuapp.com/api/image", {
-        imgUrl: input,
-      });
+      const response = await axios.post(
+        "https://morning-fjord-83611.herokuapp.com/api/image",
+        {
+          imgUrl: input,
+        }
+      );
       if (response.data) {
         setImageUrl(input);
         setObjectList(response.data.foundObjects);
@@ -40,7 +45,7 @@ function App() {
   return (
     <Container my-auto fluid className="App">
       <Row>
-        <Col >
+        <Col>
           <ImageLinkForm
             className="linkForm"
             onInputChange={onInputChange}
@@ -58,7 +63,10 @@ function App() {
       </Row>
       <Row>
         <Col>
-          <QueryList className="d-flex justify-content-center" queryList={queryList} />
+          <QueryList
+            className="d-flex justify-content-center"
+            queryList={queryList}
+          />
         </Col>
       </Row>
     </Container>
