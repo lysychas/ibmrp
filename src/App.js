@@ -25,7 +25,7 @@ function App() {
 
   const onButtonSubmit = async () => {
     try {
-      const response = await axios.post("https://morning-fjord-83611.herokuapp.com//api/image", {
+      const response = await axios.post("https://morning-fjord-83611.herokuapp.com/api/image", {
         imgUrl: input,
       });
       if (response.data) {
